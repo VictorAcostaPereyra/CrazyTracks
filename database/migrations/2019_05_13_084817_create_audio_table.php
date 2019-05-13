@@ -13,8 +13,13 @@ class CreateAudioTable extends Migration
      */
     public function up()
     {
-        Schema::create('audio', function (Blueprint $table) {
+        Schema::create('audios', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('type');
+            $table->string('extension');
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

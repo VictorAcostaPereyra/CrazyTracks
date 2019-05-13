@@ -11,17 +11,18 @@
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('audio','AudioController');
 
-Route::get('/welcome', 'MainController@displayAudioAction')->name('home');
+/*Route::get('/welcome', 'MainController@displayAudioAction')->name('home');
 Route::get('/files/{type}/{id?}', 'FileController@index');
 
 Route::post('files/add', 'FileController@store');
 Route::post('files/edit/{id}', 'FileController@edit');
-Route::post('files/delete/{id}', 'FileController@destroy');
+Route::post('files/delete/{id}', 'FileController@destroy');*/
 
 
 

@@ -2,10 +2,10 @@
 
 namespace Curso\Http\Controllers;
 
-use Curso\mp3files;
+use Curso\Audio;
 use Illuminate\Http\Request;
 
-class Mp3filesController extends Controller
+class AudioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class Mp3filesController extends Controller
      */
     public function index()
     {
-        //
+        $audios = Audio::all();
+        return view('audio.index',compact('audios'));
     }
 
     /**
@@ -24,7 +25,7 @@ class Mp3filesController extends Controller
      */
     public function create()
     {
-        //
+        return view('audio.create');
     }
 
     /**
@@ -35,51 +36,56 @@ class Mp3filesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Audio::create($request->all());
+        return redirect('/audio');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Curso\mp3files  $mp3files
+     * @param  \Curso\Audio  $audio
      * @return \Illuminate\Http\Response
      */
-    public function show(mp3files $mp3files)
+    public function show(Audio $audio)
     {
-        //
+        return view('audio.show',compact('audio'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Curso\mp3files  $mp3files
+     * @param  \Curso\Audio  $audio
      * @return \Illuminate\Http\Response
      */
-    public function edit(mp3files $mp3files)
+    public function edit(Audio $audio)
     {
-        //
+       return view('audio.edit',compact('audio'));
+   
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Curso\mp3files  $mp3files
+     * @param  \Curso\Audio  $audio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mp3files $mp3files)
+    public function update(Request $request, Audio $audio)
     {
-        //
+        $audio->update($request->all());
+        return redirect('/audio');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Curso\mp3files  $mp3files
+     * @param  \Curso\Audio  $audio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(mp3files $mp3files)
+    public function destroy(Audio $audio)
     {
-        //
+        $audio->delete();
+        return redirect('/audio');
     }
 }
